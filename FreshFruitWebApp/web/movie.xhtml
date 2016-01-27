@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>#{movieui.movie.title}</title>
+        <link rel="stylesheet" type="text/css" href="classes.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div align="center">
+                <h:panelGrid columns="2" columnClasses="alignTop">
+                
+                    <p:panel id="panel2" style="text-align: center;">
+                        <div align="left">
+                            <p:commandButton update="panel2" value="Home" action="#{profileui.cancelHome()}"
+                                             icon="ui-icon-home" style="width:110px"/>
+                            <br></br>
+
+                            <p:commandButton update="panel2" value="Profile" action="#{profileui.profile()}"
+                                             icon="ui-icon-pencil" style="width:110px"/>
+
+                            <br></br>
+                            <p:commandButton update="panel2" value="Logout" action="#{profileui.logout()}"
+                                             icon="ui-icon-power" style="width:110px"/>
+                        </div>
+                    </p:panel> 
+                    <p:panel id="panel" header="#{movieui.movie.title}" style="text-align: center; width: 400px">
+                        <p:messages id="messages" autoUpdate="true"/>
+                        <div align="center">
+                        <p:commandButton update="panel" value="Back" action="#{movieui.search()}"
+                                         icon="ui-icon-arrowreturnthick-1-w" style="width:90px; height: 60px"/>
+                        <p:commandButton update="panel" value="Similar Movies" action="#{movieui.similar(movieui.movie)}"
+                                         icon="ui-icon-newwinthick-1-w" style="width:180px; height: 60px"/>
+                        </div>
+                        <br></br>
+                        <img src="#{movieui.movie.imagePath}"></img>
+                        <br></br>
+                        <div align="left">
+                        Release Date: #{movieui.movie.releaseDate}
+                        <br></br>
+                        Synopsis: #{movieui.movie.synopsis}
+                        <br></br>
+                        <br></br>
+                        </div>
+                        Rate this movie
+                        <br></br>
+                        <h:commandLink action="#{movieui.setRating(1)}">
+                            <p:graphicImage value="#{movieui.starImage(1)}" width="15" height="15"/>
+                        </h:commandLink>
+                        <h:commandLink action="#{movieui.setRating(2)}">
+                            <p:graphicImage value="#{movieui.starImage(2)}" width="15" height="15"/>
+                        </h:commandLink>
+                        <h:commandLink action="#{movieui.setRating(3)}">
+                            <p:graphicImage value="#{movieui.starImage(3)}" width="15" height="15"/>
+                        </h:commandLink>
+                        <h:commandLink action="#{movieui.setRating(4)}">
+                            <p:graphicImage value="#{movieui.starImage(4)}" width="15" height="15"/>
+                        </h:commandLink>
+                        <h:commandLink action="#{movieui.setRating(5)}">
+                            <p:graphicImage value="#{movieui.starImage(5)}" width="15" height="15"/>
+                        </h:commandLink>
+                        <br></br>
+                        <p:inputTextarea rows="5" id="reviewText" value="#{movieui.reviewText}"/>
+                        <br></br>
+                        <p:commandButton id="submit" update="panel2" value="Submit Rating" action="#{movieui.rate()}"
+                                         icon="ui-icon-check" style="width:200px"/>
+                        <br></br>
+                        <br></br>
+
+                        Reviews:
+                        <br></br>
+                        <h:dataTable var="review" value="#{movieui.movie.reviews}">
+                            <h:column>
+                                <p:graphicImage value="#{review.starImage(1)}" width="15" height="15"/>
+                                <p:graphicImage value="#{review.starImage(2)}" width="15" height="15"/>
+                                <p:graphicImage value="#{review.starImage(3)}" width="15" height="15"/>
+                                <p:graphicImage value="#{review.starImage(4)}" width="15" height="15"/>
+                                <p:graphicImage value="#{review.starImage(5)}" width="15" height="15"/>
+                                <br></br>
+                                <h:outputText value="#{review.textReview}"/>
+                                <br></br>
+                                Reviewed by <h:outputText value="#{review.reviewer.username}"/> (<h:outputText value="#{review.reviewer.major.fullName}"/>)
+                                <br></br>
+                                <br></br>
+                            </h:column>
+                        </h:dataTable>
+                    </p:panel>
+                </h:panelGrid>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

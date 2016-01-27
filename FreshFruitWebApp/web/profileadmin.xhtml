@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Fresh Fruit Profile</title>
+        
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel id="panel" header="Fresh Fruit Profile Editor" style="margin: 0 auto; width:30%">
+                <div align="center">
+                    <div align="right" style="display:inline-block">
+                        <p:messages id="msgs" />
+
+                        <p:outputLabel for="username" value="Username:" />
+                        <p:inputText id="username" value="#{profileui.username}" 
+                                     label="Username">
+                        </p:inputText>
+
+                        <p:message for="username" display="icon" />
+
+                        <p:outputLabel for="password" value="Password:" />
+                        <p:password id="password" value="#{profileui.password}" 
+                                    label="Password" redisplay="true">
+                        </p:password>
+
+                        <p:message for="password" display="Text" />
+
+                        <p:outputLabel for="email" value="Email:" />
+                        <p:inputText id="email" value="#{profileui.email}" 
+                                     label="Email">
+                        </p:inputText>
+
+                        <p:message for="email" display="icon" />
+                    </div>
+                </div>
+                <div align="center">
+                    <p:commandButton update="panel" value="Save Profile" action="#{profileui.editProfile()}"
+                                     icon="ui-icon-disk"/>           
+
+                    <p:commandButton update="panel" value="Cancel" action="#{profileui.cancelHome()}" 
+                                     icon="ui-icon-closethick" />
+                </div>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Fresh Fruit Admin Controls</title>
+        <link rel="stylesheet" type="text/css" href="classes.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div align="center">
+                <h:panelGrid columns="2" columnClasses="alignTop" style="width:30%">
+                
+                    <p:panel id="panel2" style="text-align: center;">
+                        <div align="left">
+                            <p:commandButton update="panel2" value="Home" action="#{profileui.cancelHome()}"
+                                             icon="ui-icon-home" style="width:110px"/>
+                            <br></br>
+
+                            <p:commandButton update="panel2" value="Profile" action="#{profileui.profile()}"
+                                             icon="ui-icon-pencil" style="width:110px"/>
+
+                            <br></br>
+                            <p:commandButton update="panel2" value="Logout" action="#{profileui.logout()}"
+                                             icon="ui-icon-power" style="width:110px"/>
+                        </div>
+                    </p:panel> 
+                    <p:panel id="panel" header="Fresh Fruit Admin Controls" style="text-align: center;">
+                        <p:messages id="messages" autoUpdate="true"/>
+                        <p:dataTable var="user" value="#{profileui.users}">
+                            <p:column headerText = "User">
+                                <h:outputText value="#{user.username}"/>
+                            </p:column>
+                            <p:column headerText = "Status">
+                                <p:selectOneMenu id="status" value="#{user.statusString}" style="width:69%">
+                                    <f:selectItems value="#{profileui.statuses}" />
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:panelGrid>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
